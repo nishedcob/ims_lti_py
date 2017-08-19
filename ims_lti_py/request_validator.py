@@ -1,5 +1,6 @@
 import oauth2
 
+from six import iteritems
 
 class RequestValidatorMixin(object):
     '''
@@ -93,7 +94,8 @@ class DjangoRequestValidatorMixin(RequestValidatorMixin):
         return (fake_method or request.method,
                 request.build_absolute_uri(),
                 request.META,
-                (dict(request.POST.iteritems())
+                #(dict(request.POST.iteritems())
+                (dict(iteritems(request.POST))
                     if request.method == 'POST'
                     else parameters))
 
