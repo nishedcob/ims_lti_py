@@ -2,14 +2,14 @@ from setuptools import setup, find_packages
 
 setup(
     name='ims_lti_py',
-    version='0.6',
+    version='0.6.2to3',
     description=('A Python library to help implement IMS '
                  'LTI tool consumers and providers'),
     author='Anson MacKeracher',
     author_email='anson@tophatmonocle.com',
     url='https://github.com/tophatmonocle/ims_lti_py',
     packages=find_packages(),
-    install_requires=['lxml', 'oauth2'],
+    install_requires=['lxml', 'oauth2', 'six'],
     license='MIT License',
     keywords='lti',
     zip_safe=True,
