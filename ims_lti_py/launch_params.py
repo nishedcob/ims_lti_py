@@ -1,11 +1,13 @@
 from collections import defaultdict
 import sys
 
+from builtins import str
+
 py   = sys.version_info
 if py <  (2, 6, 0): bytes=str
 
 def touni(s, enc='utf8', err='strict'):
-    return s.decode(enc, err) if isinstance(s, bytes) else unicode(s)
+    return s.decode(enc, err) if isinstance(s, bytes) else str(s)
 
 
 # List of the standard launch parameters for an LTI launch
