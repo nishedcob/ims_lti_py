@@ -39,7 +39,7 @@ class RequestValidatorMixin(object):
             self.oauth_server.verify_request(
                 oauth_request, self.oauth_consumer, {})
 
-        except oauth2.MissingSignature, e:
+        except oauth2.MissingSignature as e:
             if handle_error:
                 return False
             else:

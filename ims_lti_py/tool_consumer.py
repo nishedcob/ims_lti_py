@@ -1,12 +1,13 @@
 from collections import defaultdict
-from urllib2 import urlparse, unquote
+#from urllib2 import urlparse, unquote
+from six.moves.urllib.parse import urlparse, urlencode
 
 import oauth2
 import time
 
-from launch_params import LaunchParamsMixin
-from request_validator import RequestValidatorMixin
-from utils import InvalidLTIConfigError, generate_identifier
+from .launch_params import LaunchParamsMixin
+from .request_validator import RequestValidatorMixin
+from .utils import InvalidLTIConfigError, generate_identifier
 
 accessors = [
     'consumer_key',
