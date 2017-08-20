@@ -3,6 +3,8 @@ from lxml import etree, objectify
 
 from .utils import InvalidLTIConfigError
 
+from six import iteritems
+
 accessors = [
         'title',
         'description',
@@ -51,7 +53,7 @@ class ToolConfig():
                 else defaultdict(lambda: None)
 
         # Iterate over all provided options and save to class instance members
-        for (key, val) in kwargs.iteritems():
+        for (key, val) in iteritems(kwargs):
             setattr(self, key, val)
 
     @staticmethod
@@ -170,12 +172,12 @@ class ToolConfig():
                 self.set_ext_params(platform, properties)
 
     def recursive_options(self,element,params):
-        for key, val in params.iteritems():
+        for key, val in iteritems(params):
             if isinstance(val, dict):
                 options_node = etree.SubElement(element,
                       '{%s}%s' %(NSMAP['lticm'], 'options'), name =
                       key)
-                for key, val in val.iteritems():
+                for key, val in iteritems(val):
                     self.recursive_options(options_node,{key:val})
             else:
                 param_node = etree.SubElement(element, '{%s}%s'
@@ -244,4 +246,4 @@ class ToolConfig():
             identifierref = etree.SubElement(root, 'cartridge_icon',
                     identifierref = self.cartridge_icon)
 
-        return '<?xml version="1.0" encoding="UTF-8"?>' + etree.tostring(root)
+        return '<?xml version="1.0" encoding="UTF-8"?>' + str(etree.tostring(root))
